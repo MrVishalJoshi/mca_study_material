@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MCA Study Material</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px #cccccc;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .college-logo {
+            text-align: center;
+            font-size: 40px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #1769e0;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #0d4fa8;
+        }
+
+        .success {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #d1e7dd;
+            border-radius: 8px;
+            color: #0f5132;
+        }
+
+        /* LOADING BAR */
+
+        .progress-container {
+            width: 100%;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #1769e0;
+            transition: width 0.3s;
+        }
+
+        #progressText {
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        #loadingMessage {
+            text-align: center;
+            color: #555;
+        }
+
+        /* FINAL MESSAGE */
+
+        #hackedMessage {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffe0e0;
+            border-radius: 10px;
+            color: #333;
+        }
+
+        #hackedMessage h2 {
+            color: red;
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            color: #777;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+    <div class="college-logo">📚</div>
+
+    <h2>MCA Study Material</h2>
+
+    <p style="text-align:center;">
+        Unit 2 Notes Available
+    </p>
+
+    <p style="text-align:center;">
+        Please verify your student account to access
+        the latest study material.
+    </p>
+
+
+    <!-- LOGIN FORM -->
+
+    <form id="loginForm">
+
+        <label>Student Email</label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="youremail@gmail.com"
+            required
+        >
+
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter Your Mobile No"
+            inputmode="numeric"
+            pattern="[0-9]{1,10}"
+            maxlength="10"
+            required
+        >
+
+
+        <button type="submit">
+
+            View Study Material
+
+        </button>
+
+    </form>
+
+
+    <!-- LOADING AND FINAL MESSAGE -->
+
+    <div class="success" id="success">
+
+        <h3 id="loadingTitle">
+
+            🔐 Verifying Student Account...
+
+        </h3>
+
+
+        <div class="progress-container">
+
+            <div class="progress-bar" id="progressBar"></div>
+
+        </div>
+
+
+        <p id="progressText">0%</p>
+
+
+        <p id="loadingMessage">
+
+            Connecting to secure server...
+
+        </p>
+
+
+        <!-- FINAL HACKING SIMULATION MESSAGE -->
+
+        <div id="hackedMessage">
+
+            <h2>YOU ARE UNDER MY CONTROL.</h2>
+
+            <h3>
+                Your Phone Is Hacked!
+            </h3>
+            <p>
+                By Assistant Professor Vishal Joshi.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("loginForm").addEventListener(
+
+        "submit",
+
+        function(event) {
+
+
+            event.preventDefault();
+
+
+            // Hide login form
+
+            document.getElementById("loginForm").style.display = "none";
+
+
+            // Show loading section
+
+            document.getElementById("success").style.display = "block";
+
+
+            let progress = 0;
+
+
+            let progressBar = document.getElementById("progressBar");
+
+            let progressText = document.getElementById("progressText");
+
+            let loadingMessage = document.getElementById("loadingMessage");
+
+            let loadingTitle = document.getElementById("loadingTitle");
+
+
+            let messages = [
+
+                "Connecting to secure server...",
+
+                "Verifying student account...",
+
+                "Scanning device security...",
+
+                "Checking network connection...",
+
+                "Analyzing system status...",
+
+                "Finalizing security check..."
+
+            ];
+
+
+            let messageIndex = 0;
+
+
+            // Slow loading animation
+
+            let interval = setInterval(function() {
+
+
+                progress++;
+
+
+                progressBar.style.width = progress + "%";
+
+
+                progressText.innerText = progress + "%";
+
+
+                // Change loading message
+
+                if (progress % 15 === 0 && messageIndex < messages.length) {
+
+
+                    loadingMessage.innerText = messages[messageIndex];
+
+
+                    messageIndex++;
+
+
+                }
+
+
+                // When loading reaches 100%
+
+                if (progress >= 100) {
+
+
+                    clearInterval(interval);
+
+
+                    loadingTitle.innerText = "⚠️ WARNING !!!";
+
+
+                    loadingMessage.style.display = "none";
+
+
+                    progressText.style.display = "none";
+
+
+                    document.getElementById("hackedMessage").style.display = "block";
+                }
+            }, 100);
+        }
+    );
+</script>
+</body>
+</html>
